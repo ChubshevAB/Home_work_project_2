@@ -7,12 +7,16 @@ file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Data'
 
 
 def read_json(path: str) -> list:
+    '''Принимает на вход путь к json файлу и сохраняет его содержимое в переменной data'''
+
     with open(file_path, 'r', encoding="UTF-8") as file:
         data = json.load(file)
     return data
 
 
-def create_objects_from_json(data):
+def create_objects_from_json(data: list) -> list:
+    '''Принимает на вход список и реализует загрузку данных в объект класса на основании этого списка'''
+
     categories = []
     for category in data:
         products = []

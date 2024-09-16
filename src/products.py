@@ -19,8 +19,10 @@ class Product:
         if value <= 0:
             print("Цена не должна быть нулевая или отрицательная")
         elif value < self.__price:
-            confirmation = input(f"Вы уверены, что хотите понизить цену с {self.__price} до {value}? (y/n): ")
-            if confirmation.lower() == 'y':
+            confirmation = input(
+                f"Вы уверены, что хотите понизить цену с {self.__price} до {value}? (y/n): "
+            )
+            if confirmation.lower() == "y":
                 self.__price = value
                 print(f"Цена успешно изменена на {value}.")
             else:

@@ -1,4 +1,4 @@
-# from src.classes_product_category import Product, Category
+
 from src.categories import Category
 from src.products import Product
 
@@ -36,26 +36,6 @@ if __name__ == "__main__":
     category1.add_product(product1)
     category1.add_product(product2)
     category1.add_product(product3)
-    print(category1.products_info)
-    print(category1.product_count)
 
-    new_product = Product.new_product(
-        {
-            "name": "Samsung Galaxy Note 8",
-            "description": "256GB, Серый цвет, 200MP камера",
-            "price": 150000.0,
-            "quantity": 7,
-        }
-    )
-    print(new_product.name)
-    print(new_product.description)
-    print(new_product.price)
-    print(new_product.quantity)
-
-    new_product.price = 800
-    print(new_product.price)
-
-    new_product.price = -100
-    print(new_product.price)
-    new_product.price = 0
-    print(new_product.price)
+    print(category1)
+    print(product1 + product2)

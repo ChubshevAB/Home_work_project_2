@@ -1,19 +1,20 @@
-
 from src.categories import Category
-from src.products import Product
+from src.products import LawnGrass, Product, Smartphone
 
 
 def test_product(product):
-    assert product.name == 'Samsung Galaxy S23 Ultra'
-    assert product.description == '256GB, Серый цвет, 200MP камера'
+    assert product.name == "Samsung Galaxy S23 Ultra"
+    assert product.description == "256GB, Серый цвет, 200MP камера"
     assert product.price == 180000.0
     assert product.quantity == 5
 
 
 def test_category(category):
     assert category.name == "Смартфоны"
-    assert category.description == ("Смартфоны, как средство не только коммуникации, но и получения дополнительных "
-                                    "функций для удобства жизни")
+    assert category.description == (
+        "Смартфоны, как средство не только коммуникации, но и получения дополнительных "
+        "функций для удобства жизни"
+    )
     assert category.product_count == 0
     assert category.category_count == 1
 
@@ -33,7 +34,12 @@ def test_price_setter_with_invalid_value():
 
 
 def test_new_product_class_method():
-    product_info = {"name": "Товар", "description": "Описание товара", "price": 100.0, "quantity": 10}
+    product_info = {
+        "name": "Товар",
+        "description": "Описание товара",
+        "price": 100.0,
+        "quantity": 10,
+    }
     product = Product.new_product(product_info)
     assert product.name == "Товар"
     assert product.price == 100.0
@@ -48,7 +54,12 @@ def test_category_initialization():
 
 def test_add_product():
     category = Category("Категория", "Описание категории")
-    product_info = {"name": "Товар", "description": "Описание товара", "price": 100.0, "quantity": 10}
+    product_info = {
+        "name": "Товар",
+        "description": "Описание товара",
+        "price": 100.0,
+        "quantity": 10,
+    }
     product = Product.new_product(product_info)
     category.add_product(product)
     assert category.name == "Категория"
@@ -57,21 +68,47 @@ def test_add_product():
 
 
 def test_total_price():
-    product1 = Product.new_product(
-        {
-            "name": "Samsung Galaxy S23 Ultra",
-            "description": "256GB, Серый цвет, 200MP камера",
-            "price": 180000.0,
-            "quantity": 5,
-        }
+
+    smartphone1 = Smartphone(
+        "Samsung Galaxy S23 Ultra",
+        "256GB, Серый цвет, 200MP камера",
+        180000.0,
+        5,
+        95.5,
+        "S23 Ultra",
+        256,
+        "Серый",
     )
-    product2 = Product.new_product(
-        {
-            "name": "Iphone 15",
-            "description": "512GB, Gray space",
-            "price": 210000.0,
-            "quantity": 8,
-        }
+    smartphone2 = Smartphone(
+        "Iphone 15", "512GB, Gray space", 210000.0, 8, 98.2, "15", 512, "Gray space"
     )
 
-    assert product1 + product2 == 2580000.0
+    assert smartphone1 + smartphone2 == 2580000.0
+
+
+def test_total_price_error():
+    smartphone1 = Smartphone(
+        "Samsung Galaxy S23 Ultra",
+        "256GB, Серый цвет, 200MP камера",
+        180000.0,
+        5,
+        95.5,
+        "S23 Ultra",
+        256,
+        "Серый",
+    )
+    grass1 = LawnGrass(
+        "Газонная трава",
+        "Элитная трава для газона",
+        500.0,
+        20,
+        "Россия",
+        "7 дней",
+        "Зеленый",
+    )
+
+    try:
+        result = smartphone1 + grass1
+        assert result
+    except TypeError:
+        print("Возникла ошибка TypeError при попытке сложения")

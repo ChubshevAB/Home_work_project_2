@@ -1,61 +1,62 @@
-# from src.classes_product_category import Product, Category
 from src.categories import Category
-from src.products import Product
+from src.products import LawnGrass, Smartphone
 
 if __name__ == "__main__":
-    product1 = Product.new_product(
-        {
-            "name": "Samsung Galaxy S23 Ultra",
-            "description": "256GB, Серый цвет, 200MP камера",
-            "price": 180000.0,
-            "quantity": 5,
-        }
+    smartphone1 = Smartphone(
+        "Samsung Galaxy S23 Ultra",
+        "256GB, Серый цвет, 200MP камера",
+        180000.0,
+        5,
+        95.5,
+        "S23 Ultra",
+        256,
+        "Серый",
     )
-    product2 = Product.new_product(
-        {
-            "name": "Iphone 15",
-            "description": "512GB, Gray space",
-            "price": 210000.0,
-            "quantity": 8,
-        }
+    smartphone2 = Smartphone(
+        "Iphone 15", "512GB, Gray space", 210000.0, 8, 98.2, "15", 512, "Gray space"
     )
-    product3 = Product.new_product(
-        {
-            "name": "Xiaomi Redmi Note 11",
-            "description": "1024GB, Синий",
-            "price": 31000.0,
-            "quantity": 14,
-        }
-    )
-
-    category1 = Category(
-        "Смартфоны",
-        "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
+    smartphone3 = Smartphone(
+        "Xiaomi Redmi Note 11",
+        "1024GB, Синий",
+        31000.0,
+        14,
+        90.3,
+        "Note 11",
+        1024,
+        "Синий",
     )
 
-    category1.add_product(product1)
-    category1.add_product(product2)
-    category1.add_product(product3)
-    print(category1.products_info)
-    print(category1.product_count)
-
-    new_product = Product.new_product(
-        {
-            "name": "Samsung Galaxy Note 8",
-            "description": "256GB, Серый цвет, 200MP камера",
-            "price": 150000.0,
-            "quantity": 7,
-        }
+    grass1 = LawnGrass(
+        "Газонная трава",
+        "Элитная трава для газона",
+        500.0,
+        20,
+        "Россия",
+        "7 дней",
+        "Зеленый",
     )
-    print(new_product.name)
-    print(new_product.description)
-    print(new_product.price)
-    print(new_product.quantity)
+    grass2 = LawnGrass(
+        "Газонная трава 2",
+        "Выносливая трава",
+        450.0,
+        15,
+        "США",
+        "5 дней",
+        "Темно-зеленый",
+    )
 
-    new_product.price = 800
-    print(new_product.price)
+    category_smartphones = Category("Смартфоны", "Высокотехнологичные смартфоны")
+    category_grass = Category("Газонная трава", "Различные виды газонной травы")
 
-    new_product.price = -100
-    print(new_product.price)
-    new_product.price = 0
-    print(new_product.price)
+    category_smartphones.add_product(smartphone1)
+    category_smartphones.add_product(smartphone2)
+
+    category_grass.add_product(grass1)
+    category_grass.add_product(grass2)
+
+    try:
+        category_smartphones.add_product(smartphone3)
+    except TypeError:
+        print("Возникла ошибка TypeError при добавлении не продукта")
+    else:
+        print("Не возникла ошибка TypeError при добавлении не продукта")

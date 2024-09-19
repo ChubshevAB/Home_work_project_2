@@ -23,6 +23,9 @@ class Category:
         return self._products
 
     def add_product(self, product: Product):
+        if not isinstance(product, Product):
+            raise TypeError
+
         for existing_product in self._products:
             if existing_product.name == product.name:
                 existing_product.quantity += product.quantity

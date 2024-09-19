@@ -14,8 +14,14 @@ class Product:
         return f"{self.name}, {self.__price} руб. Остаток {self.quantity} шт."
 
     def __add__(self, other):
-        total_price = self.__price * self.quantity + other.__price * other.quantity
-        return total_price
+        if isinstance(self, Smartphone) and isinstance(other, Smartphone):
+            total_price = self.__price * self.quantity + other.__price * other.quantity
+            return total_price
+        elif isinstance(self, LawnGrass) and isinstance(other, LawnGrass):
+            total_price = self.__price * self.quantity + other.__price * other.quantity
+            return total_price
+        else:
+            raise TypeError
 
     @property
     def price(self):
@@ -45,3 +51,24 @@ class Product:
             price=product_info["price"],
             quantity=product_info["quantity"],
         )
+
+
+class Smartphone(Product):
+    def __init__(
+        self, name, description, price, quantity, efficiency, model, memory, color
+    ):
+        super().__init__(name, description, price, quantity)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+
+class LawnGrass(Product):
+    def __init__(
+        self, name, description, price, quantity, country, germination_period, color
+    ):
+        super().__init__(name, description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.color = color

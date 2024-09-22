@@ -1,4 +1,5 @@
 from src.categories import Category
+from src.order import Order
 from src.products import LawnGrass, Smartphone
 
 if __name__ == "__main__":
@@ -54,9 +55,5 @@ if __name__ == "__main__":
     category_grass.add_product(grass1)
     category_grass.add_product(grass2)
 
-    try:
-        category_smartphones.add_product(smartphone3)
-    except TypeError:
-        print("Возникла ошибка TypeError при добавлении не продукта")
-    else:
-        print("Не возникла ошибка TypeError при добавлении не продукта")
+    order = Order(smartphone1, 2)
+    print(order)

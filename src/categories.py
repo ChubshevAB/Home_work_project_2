@@ -1,7 +1,8 @@
+from src.base_product_container import BaseProductContainer
 from src.products import Product
 
 
-class Category:
+class Category(BaseProductContainer):
     name: str
     description: str
     _products: list
@@ -9,8 +10,9 @@ class Category:
     category_count = 0
 
     def __init__(self, name, description):
-        self.name = name
-        self.description = description
+        super().__init__(name, description)
+        # self.name = name
+        # self.description = description
         self._products = []
         Category.category_count += 1
 

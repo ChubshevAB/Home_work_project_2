@@ -1,7 +1,8 @@
 import json
 import os
 
-from src.classes_product_category import Product, Category
+from src.products import Product
+from src.categories import Category
 
 file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Data', 'products.json'))
 

@@ -1,5 +1,6 @@
 from src.base_product_container import BaseProductContainer
 from src.products import Product
+from src.my_exception import ZeroQuantityError
 
 
 class Category(BaseProductContainer):
@@ -25,17 +26,27 @@ class Category(BaseProductContainer):
         return self._products
 
     def add_product(self, product: Product):
-        if not isinstance(product, Product):
-            raise TypeError
+        try:
+            if product.quantity <= 0:
+                raise ZeroQuantityError("Товар с нулевым количеством не может быть добавлен.")
 
-        for existing_product in self._products:
-            if existing_product.name == product.name:
-                existing_product.quantity += product.quantity
-                existing_product.price = max(existing_product.price, product.price)
-                return
+            if not isinstance(product, Product):
+                raise TypeError
 
-        self._products.append(product)
-        Category.product_count += 1
+            for existing_product in self._products:
+                if existing_product.name == product.name:
+                    existing_product.quantity += product.quantity
+                    existing_product.price = max(existing_product.price, product.price)
+                    return
+
+            self._products.append(product)
+            Category.product_count += 1
+            print(f"Товар {product.name} успешно добавлен в категорию.")
+
+        except ZeroQuantityError as e:
+            print(e)
+        finally:
+            print("Обработка добавления товара завершена.")
 
     @property
     def products_info(self):

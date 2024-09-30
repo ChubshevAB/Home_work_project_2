@@ -1,13 +1,23 @@
 from src.base_product_container import BaseProductContainer
 from src.products import Product
+from src.my_exception import ZeroQuantityError
 
 
 class Order(BaseProductContainer):
     def __init__(self, product: "Product", quantity):
-        super().__init__(product.name, product.description)
-        self.product = product
-        self.quantity = quantity
-        self.total_cost = self.calculate_total_cost()
+        try:
+            if quantity <= 0:
+                raise ZeroQuantityError("Невозможно создать заказ на товар с нулевым количеством.")
+
+            super().__init__(product.name, product.description)
+            self.product = product
+            self.quantity = quantity
+            self.total_cost = self.calculate_total_cost()
+
+        except ZeroQuantityError as e:
+            print(e)
+        finally:
+            print("Обработка создания заказа завершена.")
 
     def calculate_total_cost(self):
         return self.product.price * self.quantity

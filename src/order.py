@@ -1,13 +1,15 @@
 from src.base_product_container import BaseProductContainer
-from src.products import Product
 from src.my_exception import ZeroQuantityError
+from src.products import Product
 
 
 class Order(BaseProductContainer):
     def __init__(self, product: "Product", quantity):
         try:
             if quantity <= 0:
-                raise ZeroQuantityError("Невозможно создать заказ на товар с нулевым количеством.")
+                raise ZeroQuantityError(
+                    "Невозможно создать заказ на товар с нулевым количеством."
+                )
 
             super().__init__(product.name, product.description)
             self.product = product

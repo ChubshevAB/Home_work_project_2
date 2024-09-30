@@ -1,6 +1,6 @@
 from src.base_product_container import BaseProductContainer
-from src.products import Product
 from src.my_exception import ZeroQuantityError
+from src.products import Product
 
 
 class Category(BaseProductContainer):
@@ -28,7 +28,9 @@ class Category(BaseProductContainer):
     def add_product(self, product: Product):
         try:
             if product.quantity <= 0:
-                raise ZeroQuantityError("Товар с нулевым количеством не может быть добавлен.")
+                raise ZeroQuantityError(
+                    "Товар с нулевым количеством не может быть добавлен."
+                )
 
             if not isinstance(product, Product):
                 raise TypeError

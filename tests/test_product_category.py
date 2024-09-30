@@ -133,7 +133,7 @@ def test_zero_quantity():
     assert str(e.value) == "Товар с нулевым количеством не может быть добавлен"
 
 
-def test_avg_price(capsys):
+def test_avg_price():
 
     category_smartphones = Category("Смартфоны", "Высокотехнологичные смартфоны")
     result = Category.avg_price(category_smartphones)

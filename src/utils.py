@@ -27,6 +27,7 @@ def create_objects_from_json(data: list) -> list:
 
     return categories
 
+
 if __name__ == '__main__':
     data = read_json(file_path)
     product_data = create_objects_from_json(data)

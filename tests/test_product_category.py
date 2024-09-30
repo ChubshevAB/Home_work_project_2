@@ -1,3 +1,5 @@
+import pytest
+
 from src.categories import Category
 from src.products import LawnGrass, Product, Smartphone
 
@@ -112,3 +114,28 @@ def test_total_price_error():
         assert result
     except TypeError:
         print("Возникла ошибка TypeError при попытке сложения")
+
+
+def test_zero_quantity():
+    with pytest.raises(ValueError) as e:
+
+        smartphone1 = Smartphone(
+            "Samsung Galaxy S23 Ultra",
+            "256GB, Серый цвет, 200MP камера",
+            180000.0,
+            0,
+            95.5,
+            "S23 Ultra",
+            256,
+            "Серый",
+        )
+
+    assert str(e.value) == "Товар с нулевым количеством не может быть добавлен"
+
+
+def test_avg_price():
+
+    category_smartphones = Category("Смартфоны", "Высокотехнологичные смартфоны")
+    result = Category.avg_price(category_smartphones)
+
+    assert result == 0

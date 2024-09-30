@@ -1,5 +1,4 @@
 from src.categories import Category
-from src.order import Order
 from src.products import LawnGrass, Smartphone
 
 if __name__ == "__main__":
@@ -52,8 +51,29 @@ if __name__ == "__main__":
     category_smartphones.add_product(smartphone1)
     category_smartphones.add_product(smartphone2)
 
-    category_grass.add_product(grass1)
-    category_grass.add_product(grass2)
+    # category_grass.add_product(grass1)
+    # category_grass.add_product(grass2)
 
-    order = Order(smartphone1, 2)
-    print(order)
+    print(Category.avg_price(category_smartphones))
+
+    # try:
+    #     product_invalid = Smartphone(
+    #         "Бракованный товар",
+    #         "Неверное количество",
+    #         1000.0,
+    #         0,
+    #         90.3,
+    #         "Note 11",
+    #         1024,
+    #         "Синий",
+    #     )
+    #
+    # except ValueError as e:
+    #     print(
+    #       "Возникла ошибка ValueError прерывающая работу программы при попытке добавить продукт с нулевым
+    #       количеством"
+    #     )
+    # else:
+    #     print(
+    #         "Не возникла ошибка ValueError при попытке добавить продукт с нулевым количеством"
+    #     )

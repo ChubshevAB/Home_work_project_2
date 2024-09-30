@@ -43,3 +43,14 @@ class Category(BaseProductContainer):
         for product in self._products:
             products_str += f"{str(product)}\n"
         return products_str
+
+    def avg_price(self):
+
+        try:
+            total_price = sum(product.price for product in self._products)
+            avg_price = total_price / Category.product_count
+            return avg_price
+
+        except ZeroDivisionError:
+            print("В категории нет товаров")
+            return 0
